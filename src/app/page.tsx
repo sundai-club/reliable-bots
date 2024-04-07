@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
+import UploadFiles from "./_components/UploadFiles";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -48,7 +49,7 @@ async function CrudShowcase() {
         <div>
           <p className="truncate">Your bot: {latestPost.title}</p>
           <p>{latestPost.description}</p>
-          <p><Link href="#">Add Documents for Bot</Link></p>
+          <UploadFiles />
         </div>
       ) : (
         <p>You have no posts yet.</p>
