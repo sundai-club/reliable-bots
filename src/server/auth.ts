@@ -8,8 +8,23 @@ import { type Adapter } from "next-auth/adapters";
 import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from "next-auth/providers/google";
 
+import { PrismaClient } from '@prisma/client';
+
 import { env } from "~/env";
 import { db } from "~/server/db";
+
+const prisma = new PrismaClient();
+
+async function createUserBot(userId: string): Promise<void> { 
+  // Implement the logic to create a bot for the user here.
+  await prisma.bot.create({
+    data: {
+      title: "Startup Chatbot", 
+      description: "No description added",
+      createdById: userId,
+    },
+  });
+}
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -70,6 +85,12 @@ export const authOptions: NextAuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  events: {
+    createUser: async (message) => {
+      // Assuming the message.user.id contains the user ID
+      await createUserBot(message.user.id);
+    },
+  },
 };
 
 /**
