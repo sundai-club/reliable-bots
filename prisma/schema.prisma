@@ -26,6 +26,29 @@ model Post {
     @@index([name])
 }
 
+model Bot {
+    id              Int         @id @default(autoincrement())
+    title           String
+    description     String
+    index_id        String?
+    index_url       String?
+    documents       Document[]
+
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    createdBy       User        @relation(fields: [createdById], references: [id])
+    createdById     String
+}
+
+model Document {
+  id        Int    @id @default(autoincrement())
+  content   String?
+  url       String
+  botId     Int
+  bot       Bot    @relation(fields: [botId], references: [id])
+}
+
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -62,6 +85,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     posts         Post[]
+    bots          Bot[]
 }
 
 model VerificationToken {
