@@ -46,18 +46,18 @@ async function CrudShowcase() {
     <div className="w-full max-w-xs">
       {latestPost ? (
         <div>
-          <p className="truncate">Your bot: {latestPost.title}</p>
-          <p>{latestPost.description}</p>
+          <p className="truncate text-2xl">Your bot: {latestPost.title}</p>
+          <p>Description: {latestPost.description}</p>
           {latestPost.index_id != "" ?(
             <div>
               <UploadFiles />
               
             </div>
           ) : (<p><em>PDF previously uploaded</em></p>)}
-          <p><Link href={`/bots/${latestPost.id}`}>Open Shareable Chatbot Interface</Link></p>
+          <p><Link href={`/bots/${latestPost.id}`}><u>Open Shareable Chatbot Interface</u></Link></p>
         </div>
       ) : (
-        <p>You have no posts yet.</p>
+        <p>You have no bots created.</p>
       )}
     </div>
   );

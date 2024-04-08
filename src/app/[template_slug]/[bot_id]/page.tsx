@@ -1,33 +1,39 @@
-"use client"
+import { NextRequest } from "next/server"
+import { headers } from "next/headers"
 
-import { useEffect, useState } from "react";
+
+
 import Chat from "~/app/_components/Chat";
 import MobileSiderbar from "~/app/_components/MobileSidebar";
 import Sidebar from "~/app/_components/Sidebar";
 import useAnalytics from "~/app/_hooks/useAnalytics";
+import { api } from "~/trpc/server";
 
-export default function ChatBot() {
-  const defaultModel = {
-    name: "Your Generic Business Bot",
-    id: "generic-3.5-turbo",
-    available: true,
-  };
+export default async function ChatBot() {
+  const headersList = headers();
+  const referer = headersList.get("referer");
+  let botIdNum;
 
-  const [isComponentVisible, setIsComponentVisible] = useState(false);
-  const [model, setModel] = useState(defaultModel);
-  const { trackEvent } = useAnalytics();
+  if (referer) {
+    const url = new URL(referer);
+    const pathname = url.pathname;
 
-  useEffect(() => {
-    trackEvent("page.view", { page: "bot" });
-  }, []);
+    // Extracts the number from the pathname using a regex match
+    const matches = pathname.match(/\/bots\/(\d+)/);
+    if (matches && matches[1]) { // Check if matches and matches[1] are truthy
+      botIdNum = parseInt(matches[1], 10); // The radix 10 is for decimal numbers
+    }
+  }
 
-  const toggleComponentVisibility = () => {
-    setIsComponentVisible(!isComponentVisible);
-  };
+  let bot;
+  if (botIdNum !== undefined) { // Check if botIdNum is not undefined
+    bot = await api.post.getBotById({id: botIdNum});  
+    console.log(bot)
+  }
 
   return (
     <main className="overflow-hidden w-full h-screen relative flex">
-      <Chat toggleComponentVisibility={toggleComponentVisibility} selectedModel={model}/>
+      <Chat/>
     </main>
   );
 }

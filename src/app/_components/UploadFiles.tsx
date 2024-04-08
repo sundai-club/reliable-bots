@@ -29,7 +29,7 @@ const UploadFiles: React.FC = () => {
     <div>
       {/* Only accept PDF files and do not allow multiple files to be selected */}
       <input type="file" onChange={handleFileChange} accept=".pdf" />
-      <button onClick={handleSubmit}>Upload File</button>
+      <button className='rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20' onClick={handleSubmit}>Upload File</button>
       {file && <div>{file.name}</div>}
     </div>
   );

@@ -1,5 +1,5 @@
 import { SiOpenai } from "react-icons/si";
-import { HiUser } from "react-icons/hi";
+import { HiUser, HiSparkles } from "react-icons/hi";
 import { TbCursorText } from "react-icons/tb";
 
 const Message = (props: any) => {
@@ -21,7 +21,7 @@ const Message = (props: any) => {
               {isUser ? (
                 <HiUser className="h-4 w-4 text-white" />
               ) : (
-                <SiOpenai className="h-4 w-4 text-white" />
+                <HiSparkles className="h-4 w-4 text-white" />
               )}
             </div>
             <div className="text-xs flex items-center justify-center gap-1 absolute left-0 top-2 -ml-4 -translate-x-full group-hover:visible !invisible">

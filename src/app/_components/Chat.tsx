@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { BsChevronDown, BsPlusLg } from "react-icons/bs";
@@ -5,6 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import useAnalytics from "~/app/_hooks/useAnalytics";
 import useAutoResizeTextArea from "~/app/_hooks/useAutoResizeTextArea";
 import Message from "./Message";
+
 
 const Chat = (props: any) => {
   const { toggleComponentVisibility, selectedModel } = props;
