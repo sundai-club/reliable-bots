@@ -50,7 +50,7 @@ async function CrudShowcase() {
           <p>Description: {latestPost.description}</p>
           {latestPost.index_id != "" ?(
             <div>
-              <UploadFiles index={latestPost.index_id} />
+              <UploadFiles index={latestPost.index_id!} />
               
             </div>
           ) : (<p><em>PDF previously uploaded</em></p>)}
