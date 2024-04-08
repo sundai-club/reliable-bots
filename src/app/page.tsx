@@ -30,7 +30,6 @@ export default async function Home() {
           Reliable Bots
         </h1>
 
-
         <CrudShowcase />
       </div>
     </main>
@@ -49,7 +48,13 @@ async function CrudShowcase() {
         <div>
           <p className="truncate">Your bot: {latestPost.title}</p>
           <p>{latestPost.description}</p>
-          <UploadFiles />
+          {latestPost.index_id != "" ?(
+            <div>
+              <UploadFiles />
+              
+            </div>
+          ) : (<p><em>PDF previously uploaded</em></p>)}
+          <p><Link href={`/bots/${latestPost.id}`}>Open Shareable Chatbot Interface</Link></p>
         </div>
       ) : (
         <p>You have no posts yet.</p>
