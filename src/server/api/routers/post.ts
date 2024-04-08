@@ -36,6 +36,21 @@ export const postRouter = createTRPCRouter({
     });
   }),
 
+  getBotById: publicProcedure
+    .input(z.object({ id: z.number() })) // Assuming the ID is a number. Use z.string() if the ID is a string
+    .query(async ({ ctx, input }) => {
+      // Fetch the bot from the database by ID
+      const bot = await ctx.db.bot.findUnique({
+        where: { id: input.id },
+      });
+
+      if (!bot) {
+        throw new Error("Bot not found");
+      }
+
+      return bot;
+    }),
+
   getSecretMessage: protectedProcedure.query(() => {
     return "you can now see this secret message!";
   }),

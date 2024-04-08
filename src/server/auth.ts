@@ -12,6 +12,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { env } from "~/env";
 import { db } from "~/server/db";
+const crypto = require('crypto');
 
 const prisma = new PrismaClient();
 
@@ -21,6 +22,7 @@ async function createUserBot(userId: string): Promise<void> {
     data: {
       title: "Startup Chatbot", 
       description: "No description added",
+      index_id: "index-" + crypto.randomBytes(4).toString('hex'),
       createdById: userId,
     },
   });
