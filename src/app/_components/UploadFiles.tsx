@@ -33,12 +33,11 @@ const UploadFiles: React.FC<UploadFilesProps> = ({ index }) => {
       // Send to pinecone index 
       // const crypto = require('crypto');
       // const indexName = `index-${crypto.randomBytes(4).toString('hex')}`;
-      const indexName = 'my-test-pinecone-index2'
       // createIndexAndEmbeddings(indexName,file.preview);
 
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('index-name', indexName);
+      formData.append('index-name', index);
 
       // createIndexAndEmbeddings
       const response = await fetch('/api/setup', {

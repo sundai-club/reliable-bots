@@ -27,7 +27,7 @@ export const POST = async (req) => {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  const filename =  file.name.replaceAll(" ", "_");
+  const filename = file.name.replaceAll(" ", "_");
   try {
     
     const filePath = path.join(process.cwd(), "temp_assets/" + filename);
