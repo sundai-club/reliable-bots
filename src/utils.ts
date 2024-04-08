@@ -3,7 +3,8 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter'
 import { OpenAI } from 'langchain/llms/openai'
 import { loadQAStuffChain } from 'langchain/chains'
 import { Document } from 'langchain/document'
-import { timeout } from './config'
+
+const timeout = 180000;
 
 export const queryPineconeVectorStoreAndQueryLLM = async (
   client,

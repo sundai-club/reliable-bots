@@ -29,8 +29,9 @@ export const POST = async (req, res) => {
   const filename =  file.name.replaceAll(" ", "_");
   try {
     
+    const filePath = path.join(process.cwd(), "temp_assets/" + filename);
     await writeFile(
-      path.join(process.cwd(), "public/assets/" + filename),
+      filePath,
       buffer,
       { flag: 'w+' }
     );
