@@ -1,7 +1,6 @@
 import { NextRequest } from "next/server"
 import { headers } from "next/headers"
-
-
+import { useState } from "react"
 
 import Chat from "~/app/_components/Chat";
 import MobileSiderbar from "~/app/_components/MobileSidebar";
@@ -25,7 +24,7 @@ export default async function ChatBot() {
     }
   }
 
-  let bot;
+  let bot = null;
   if (botIdNum !== undefined) { // Check if botIdNum is not undefined
     bot = await api.post.getBotById({id: botIdNum});  
     console.log(bot)
@@ -33,7 +32,7 @@ export default async function ChatBot() {
 
   return (
     <main className="overflow-hidden w-full h-screen relative flex">
-      <Chat/>
+      <Chat bot={bot}/>
     </main>
   );
 }

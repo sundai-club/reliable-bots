@@ -9,7 +9,7 @@ import Message from "./Message";
 
 
 const Chat = (props: any) => {
-  const { toggleComponentVisibility, selectedModel } = props;
+  const { toggleComponentVisibility, selectedModel, bot } = props;
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -34,6 +34,7 @@ const Chat = (props: any) => {
   }, [conversation]);
 
   const sendMessage = async (e: any) => {
+
     e.preventDefault();
 
     // Don't send empty messages
@@ -59,7 +60,17 @@ const Chat = (props: any) => {
     setShowEmptyChat(false);
 
     try {
-      // TODO REQUEST ANSWER
+      // TODO fix REQUEST ANSWER
+      console.log('message: ', message)
+      const result = await fetch('/api/read', {
+        method: "POST",
+        body: JSON.stringify({message: message, index: bot.index_id })
+      })
+
+      console.log('Hello before result in POST:', message)
+      const json = await result.json()
+      const data = { message: json.data }
+      console.log('Hello after result in POST:', result)
       // const response = await fetch(`/api/openai`, {
       //   method: "POST",
       //   headers: {
@@ -70,14 +81,14 @@ const Chat = (props: any) => {
       //     model: selectedModel,
       //   }),
       // });
-      const response = {ok: true}
+      // const response = {ok: true}
 
-      if (response.ok) {
-        // TODO RETRIEVE DATA
-        // const data = await response.json();
-        const data = {
-          message: "This is a system message.",
-        };
+      // if (response.ok) {
+      //   // TODO RETRIEVE DATA
+      //   // const data = await response.json();
+      //   const data = {
+      //     message: "This is a system message.",
+      //   };
 
         // Add the message to the conversation
         setConversation([
@@ -85,10 +96,10 @@ const Chat = (props: any) => {
           { content: message, role: "user" },
           { content: data.message, role: "system" },
         ]);
-      } else {
-        console.error(response);
-        setErrorMessage("An unknown error occurred");
-      }
+      // } else {
+      //   console.error(response);
+      //   setErrorMessage("An unknown error occurred");
+      // }
 
       setIsLoading(false);
     } catch (error: any) {
