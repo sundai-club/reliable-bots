@@ -3,7 +3,11 @@ import React, { useState } from 'react';
 
 type FileWithPreview = File & { preview: string };
 
-const UploadFiles: React.FC = () => {
+type UploadFilesProps = {
+  index: string; // Assuming index is a string based on your usage
+};
+
+const UploadFiles: React.FC<UploadFilesProps> = ({ index }) => {
   // const [file, setFile] = useState<FileWithPreview | null>(null);
   const [file, setFile] = useState<any>(null);
 
@@ -55,6 +59,7 @@ const UploadFiles: React.FC = () => {
 
   return (
     <div>
+      <h1>id: {index}</h1>
       {/* Only accept PDF files and do not allow multiple files to be selected */}
       <input type="file" id="" onChange={handleFileChange} accept=".pdf" />
       <button onClick={handleSubmit}>Upload File</button>
