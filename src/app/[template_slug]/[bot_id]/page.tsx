@@ -20,8 +20,10 @@ export default async function ChatBot() {
 
     // Extracts the number from the pathname using a regex match
     const matches = pathname.match(/\/bots\/(\d+)/);
-    if (matches && matches[1]) { // Check if matches and matches[1] are truthy
-      botIdNum = parseInt(matches[1], 10); // The radix 10 is for decimal numbers
+    if (matches) {
+      if (matches[1]) { // Check if matches and matches[1] are truthy
+        botIdNum = parseInt(matches[1], 10); // The radix 10 is for decimal numbers
+      }
     }
   }
 

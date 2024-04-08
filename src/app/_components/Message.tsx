@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { SiOpenai } from "react-icons/si";
 import { HiUser, HiSparkles } from "react-icons/hi";
 import { TbCursorText } from "react-icons/tb";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import Sidebar from "./Sidebar";

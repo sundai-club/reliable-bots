@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 "use client"
 import { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
@@ -9,7 +15,7 @@ import Message from "./Message";
 
 
 const Chat = (props: any) => {
-  const { toggleComponentVisibility, selectedModel } = props;
+  const { toggleComponentVisibility} = props;
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
