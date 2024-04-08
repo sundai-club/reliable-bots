@@ -15,11 +15,12 @@ import {
 // const indexName = `index-${crypto.randomBytes(4).toString('hex')}`;
 // import { indexName } from '../../../config'
 
-export const POST = async (req, res) => {
+export const POST = async (req) => {
   const formData = await req.formData();
   console.log(formData)
 
   const file = formData.get("file");
+  const indexName = formData.get("index-name");
   console.log(file)
   if (!file) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
