@@ -15,13 +15,30 @@ const UploadFiles: React.FC<UploadFilesProps> = ({ index }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const selectedFile = event.target.files[0];
-      const fileWithPreview: FileWithPreview = {
-        ...selectedFile,
-        preview: URL.createObjectURL(selectedFile) // Generate a preview URL for the file
+  
+      // Create a FileReader to read the file
+      const reader = new FileReader();
+  
+      // Define what happens on file read completion
+      reader.onload = function(loadEvent) {
+        const base64data = loadEvent.target?.result;
+  
+        // Here `base64data` is your file in base64 format. You can now use this string for your preview or send it to your backend.
+        // Depending on your requirements, you might directly set this as a preview or additionally store it to send it to the backend.
+  
+        // Setting the file with base64 preview
+        const fileWithPreview = {
+          ...selectedFile,
+          preview: base64data // This is now a base64 string of your file
+        };
+        setFile(fileWithPreview);
       };
-      setFile(fileWithPreview); 
+  
+      // Read the file as a Data URL (base64)
+      reader.readAsDataURL(selectedFile);
     }
   };
+  
 
   const handleSubmit = async () => {
 

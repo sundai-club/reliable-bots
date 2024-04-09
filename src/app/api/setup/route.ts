@@ -18,7 +18,10 @@ export const POST = async (req: any) => {
   const formData = await req.formData();
   console.log(formData)
 
-  const file = formData.get("file");
+  const file_onload = formData.get("file");
+  const file = file_onload.split(';base64,').pop();
+  //const file = Buffer.from(base64Data, 'base64');
+
   const indexName = formData.get("index-name");
   console.log(file)
   
