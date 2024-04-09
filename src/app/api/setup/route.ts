@@ -22,24 +22,26 @@ export const POST = async (req: any) => {
   const file = formData.get("file");
   const indexName = formData.get("index-name");
   console.log(file)
+  
   if (!file) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  const filename = file.name.replaceAll(" ", "_");
+
+  //const filename = file.name.replaceAll(" ", "_");
   try {
-    
+    /*
     const filePath = path.join(process.cwd(), "temp_assets/" + filename);
     await writeFile(
       filePath,
       buffer,
       { flag: 'w+' }
     );
-
+    */
 
     // Load Embedding  to Prisma
-    const loader = new PDFLoader(filePath)
+    const loader = new PDFLoader(file)
 
     const docs = await loader.load()
     const vectorDimensions = 1536

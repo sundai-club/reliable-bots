@@ -15,17 +15,20 @@ const UploadFiles: React.FC<UploadFilesProps> = ({ index }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const selectedFile = event.target.files[0];
-
-      setFile(selectedFile); // Update the state with the new file
+      const fileWithPreview: FileWithPreview = {
+        ...selectedFile,
+        preview: URL.createObjectURL(selectedFile) // Generate a preview URL for the file
+      };
+      setFile(fileWithPreview); 
     }
   };
 
   const handleSubmit = async () => {
 
     if (file) {
-
+      console.log("Sending file to API", file.preview);
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('file', file.preview);
       formData.append('index-name', index);
 
       // createIndexAndEmbeddings
