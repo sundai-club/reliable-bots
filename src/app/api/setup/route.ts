@@ -1,6 +1,5 @@
 // copied to src/app/_components/createIndex.ts on github.com:sundai-club/reliable-bots
 import { NextResponse } from 'next/server'
-import path from "path";
 import { writeFile } from "fs/promises";
 import { PineconeClient } from '@pinecone-database/pinecone'
 import { TextLoader } from 'langchain/document_loaders/fs/text'
@@ -27,7 +26,7 @@ export const POST = async (req: any) => {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
 
-  const buffer = Buffer.from(await file.arrayBuffer());
+  //const buffer = Buffer.from(await file.arrayBuffer());
 
   //const filename = file.name.replaceAll(" ", "_");
   try {
