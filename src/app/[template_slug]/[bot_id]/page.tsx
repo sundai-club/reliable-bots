@@ -19,9 +19,9 @@ export default async function ChatBot({ params }: { params: any }) {
     }
   }
   */
-  console.log(params['bot_id'])
+  console.log(params.bot_id)
 
-  const botIdNum = parseInt(params['bot_id'])
+  const botIdNum = parseInt(params.bot_id)
 
   let bot = null;
   if (botIdNum !== undefined) {
