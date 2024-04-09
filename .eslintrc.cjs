@@ -37,7 +37,7 @@ const config = {
   },
   "overrides": [
     {
-      "files": ["./src/app/**/*.[tj]sx"],
+      "files": ["./src/app/**/*.[tj]sx","./src/app/**/*.ts"],
       "rules": {
         "@typescript-eslint/prefer-optional-chain": "off",
         "@typescript-eslint/no-unsafe-assignment": "off",
