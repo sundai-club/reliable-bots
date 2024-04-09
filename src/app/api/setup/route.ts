@@ -47,7 +47,7 @@ export const POST = async (req: any) => {
     */
 
     // Load Embedding  to Prisma
-    const loader = new PDFLoader(blob)
+    const loader = new PDFLoader(blob.url)
 
     const docs = await loader.load()
     const vectorDimensions = 1536
