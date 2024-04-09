@@ -25,11 +25,6 @@ export default async function ChatBot() {
     console.log(bot);
   }
 
-  if (bot === null) {
-    // If bot is still null after the await, you can handle the loading state or display an error message
-    return <div>Loading...</div>;
-  }
-
   return (
     <main className="overflow-hidden w-full h-screen relative flex">
       <Chat bot={bot} />
