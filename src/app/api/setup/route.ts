@@ -5,6 +5,7 @@ import { PineconeClient } from '@pinecone-database/pinecone'
 import { TextLoader } from 'langchain/document_loaders/fs/text'
 import { DirectoryLoader } from 'langchain/document_loaders/fs/directory'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
+import { put } from '@vercel/blob';
 import {
   createPineconeIndex,
   updatePinecone
@@ -18,18 +19,21 @@ export const POST = async (req: any) => {
   const formData = await req.formData();
   console.log(formData)
 
-  const file_onload = formData.get("file");
-  const file = file_onload.split(';base64,').pop();
-  //const file = Buffer.from(base64Data, 'base64');
-
+  const file = formData.get("file");
   const indexName = formData.get("index-name");
   console.log(file)
+
+  const blob = await put(file.name, file, {
+    access: 'public',
+  });
+
+  console.log(blob)
   
   if (!file) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
 
-  //const buffer = Buffer.from(await file.arrayBuffer());
+  const buffer = Buffer.from(await file.arrayBuffer());
 
   //const filename = file.name.replaceAll(" ", "_");
   try {
@@ -43,7 +47,7 @@ export const POST = async (req: any) => {
     */
 
     // Load Embedding  to Prisma
-    const loader = new PDFLoader(file)
+    const loader = new PDFLoader(blob)
 
     const docs = await loader.load()
     const vectorDimensions = 1536
