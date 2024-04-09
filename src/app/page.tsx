@@ -54,10 +54,13 @@ async function CrudShowcase() {
       {latestPost ? (
         <div>
           <p className="truncate text-2xl">Title: {latestPost.title}</p>
-          <p>Description: {latestPost.description}</p>
+          <p><strong>Upload the document you'd like your Chatbot to reference</strong></p>
+          <p>Only upload a PDF. Once it's uploaded, you'll be able to share a chat that only replies with references to the information in that PDF.</p>
+          <p>One you press "Upload", it will take  a few minutes for your chatbot to update. Once it does, you (and anyone you send the link to) will be able to chat with it at the link below</p>
           {latestPost.index_id != "" ?(
             <div>
-              <UploadFiles />
+              <UploadFiles index={latestPost.index_id!} />
+              
             </div>
           ) : (<p><em>PDF previously uploaded</em></p>)}
           <p><Link href={`/bots/${latestPost.id}`}><u>Open Shareable Chatbot Interface</u></Link></p>

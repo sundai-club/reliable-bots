@@ -1,8 +1,4 @@
-import { NextRequest } from "next/server"
-import { headers } from "next/headers"
-
-
-
+import { headers } from "next/headers";
 import Chat from "~/app/_components/Chat";
 import MobileSiderbar from "~/app/_components/MobileSidebar";
 import Sidebar from "~/app/_components/Sidebar";
@@ -17,25 +13,26 @@ export default async function ChatBot() {
   if (referer) {
     const url = new URL(referer);
     const pathname = url.pathname;
-
-    // Extracts the number from the pathname using a regex match
     const matches = pathname.match(/\/bots\/(\d+)/);
-    if (matches) {
-      if (matches[1]) { // Check if matches and matches[1] are truthy
-        botIdNum = parseInt(matches[1], 10); // The radix 10 is for decimal numbers
-      }
+    if (matches && matches[1]) {
+      botIdNum = parseInt(matches[1], 10);
     }
   }
 
-  let bot;
-  if (botIdNum !== undefined) { // Check if botIdNum is not undefined
-    bot = await api.post.getBotById({id: botIdNum});  
-    console.log(bot)
+  let bot = null;
+  if (botIdNum !== undefined) {
+    bot = await api.post.getBotById({ id: botIdNum });
+    console.log(bot);
+  }
+
+  if (bot === null) {
+    // If bot is still null after the await, you can handle the loading state or display an error message
+    return <div>Loading...</div>;
   }
 
   return (
     <main className="overflow-hidden w-full h-screen relative flex">
-      <Chat/>
+      <Chat bot={bot} />
     </main>
   );
 }
