@@ -18,7 +18,7 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
   // 3. Create query embedding
   const queryEmbedding = await new OpenAIEmbeddings().embedQuery(question)
   // 4. Query Pinecone index and return top 10 matches
-  let queryResponse = await index.query({
+  const queryResponse = await index.query({
     queryRequest: {
       topK: 10,
       vector: queryEmbedding,

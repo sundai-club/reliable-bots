@@ -32,6 +32,7 @@ const config = {
     "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
     "react/no-unescaped-entities": "off",
     "@typescript-eslint/require-await": "off",
     "@typescript-eslint/no-misused-promises": [
