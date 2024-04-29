@@ -1,6 +1,8 @@
 TECO AI: RAG Chatbot Builder
 ============================
 
+**Part of [Sundai Club](https://sundai.club/)**
+
 Welcome to TECO AI, a no-code tool designed to empower non-technical founders to rapidly prototype and validate startup ideas through contextual AI chatbots. Our RAG (Retrieval-Augmented Generation) Chatbot Builder leverages the power of AI to create contextually intelligent chatbots from documents like handbooks, guides, or course materials. This guide will help you get started with setting up your own AI chatbot.
 
 Getting Started
