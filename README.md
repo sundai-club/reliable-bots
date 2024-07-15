@@ -76,6 +76,4 @@ Understanding changes to the authentication system, especially related to Google
 -   [Update Database for Google Authentication](https://github.com/sundai-club/reliable-bots/commit/38e251475f0c07ad97608b0b838cd5d64b672df9)
 -   [Initial Update from Discord to Google Auth (pre-fix)](https://github.com/sundai-club/reliable-bots/commit/c87fdb95ca7098645b09b13927a8d7dd7be206e6)
 
-These links should help you navigate some of the more technical aspects of our setup and provide insights into the adjustments we made to optimize our chatbot system.
-
 
